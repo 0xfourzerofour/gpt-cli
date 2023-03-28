@@ -63,7 +63,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 gpt.change_model(model);
                 println!("Model changed to {}", model);
             }
-            _ => unreachable!(), // If all subcommands are defined above, anything else is unreachable!()
+            _ => cli().print_help()?,
         }
     }
 
