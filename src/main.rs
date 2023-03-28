@@ -17,22 +17,19 @@ fn cli() -> Command {
             Command::new("init")
                 .about("Initialise GPT cli config")
                 .arg(arg!(<KEY> "API_KEY"))
-                .short_flag('i')
                 .arg_required_else_help(true),
         )
-        .arg(Arg::new("reset").short('r'))
+        .arg(Arg::new("reset").long("reset"))
         .subcommand(
             Command::new("new")
                 .about("New Chat GPT Question")
                 .arg(arg!(<QUESTION> "The question to ask"))
-                .short_flag('n')
                 .arg_required_else_help(true),
         )
         .subcommand(
             Command::new("change-model")
                 .about("Change the model that is being used")
                 .arg(arg!(<MODEL> "The model id"))
-                .short_flag('m')
                 .arg_required_else_help(true),
         )
 }
@@ -50,9 +47,11 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             "init" => {
                 let key = sub_matches.get_one::<String>("KEY").unwrap();
                 gpt.update_api_key(key);
+                println!("New API key now being used");
             }
             "reset" => {
                 gpt.reset_chat_log();
+                println!("New Chat started");
             }
             "new" => {
                 let question = sub_matches.get_one::<String>("QUESTION").unwrap();
@@ -61,8 +60,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             }
             "change-model" => {
                 let model = sub_matches.get_one::<String>("MODEL").unwrap();
-
                 gpt.change_model(model);
+                println!("Model changed to {}", model);
             }
             _ => unreachable!(), // If all subcommands are defined above, anything else is unreachable!()
         }
