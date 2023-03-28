@@ -37,11 +37,15 @@ And to ask a new question to the ChatGPT service, you would run:
 cargo run -- new "What is the meaning of life?"
 ```
 
-Configuration
+## Configuration
 
 The ChatGPT CLI requires an API key to connect to the ChatGPT service. You can set your API key by running the init subcommand, as described above.
 
 The CLI also saves a configuration file to your system to store your API key and chat log. By default, this file is created using the `directories` library
 License
+
+## Note
+
+This tool is still very experimental and does not have the best error handling so it might be a little buggy for the next couple days
 
 This code is licensed under the MIT License.
