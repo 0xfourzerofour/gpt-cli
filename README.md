@@ -34,7 +34,7 @@ cargo run -- init <API_KEY>
 And to ask a new question to the ChatGPT service, you would run:
 
 ```
-cargo run -- new --QUESTION "What is the meaning of life?"
+cargo run -- new "What is the meaning of life?"
 ```
 
 Configuration
